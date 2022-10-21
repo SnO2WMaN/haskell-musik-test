@@ -42,10 +42,12 @@
                 alejandra
                 taplo-cli
                 yamlfmt
+                ffmpeg
               ]
             )
             ++ (
               with pkgs.haskellPackages; [
+                ghc
                 cabal-fmt
                 cabal-install
                 haskell-language-server
