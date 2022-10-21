@@ -2,6 +2,7 @@ module Main where
 
 import Data.ByteString.Builder qualified as B
 import Data.List (zipWith3)
+import System.Process (callProcess)
 
 sampleRate :: Float
 sampleRate = 44100.0
@@ -53,8 +54,11 @@ frequency volume hz duration = (* volume) <$> zipWith3 (\a b -> (a * b *)) attac
 note :: Volume -> BPM -> Semitones -> Beats -> [Float]
 note volume bpm n = frequency volume (semitonesToHz n) . beatsToSeconds bpm
 
-save :: FilePath -> [Float] -> IO ()
+save :: FilePath -> [Pulse] -> IO ()
 save filepath wave = writeFileLBS filepath $ B.toLazyByteString $ foldMap B.floatLE wave
+
+play :: FilePath -> IO ()
+play filepath = callProcess "ffplay" ["-f", "f32le", "-nodisp", "-autoexit", "-ar", show sampleRate, filepath]
 
 main :: IO ()
 main = do
@@ -82,3 +86,4 @@ main = do
       , noteT (a 4) 1.0
       , noteT (a 4) 2.0
       ]
+  play "sound"
