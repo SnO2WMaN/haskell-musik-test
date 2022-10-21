@@ -1,0 +1,34 @@
+{
+  "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
+  // "nixEnvSelector.args": "--pure"
+  "haskell.formattingProvider": "none",
+  "haskell.manageHLS": "PATH",
+  // custom formatter
+  "customLocalFormatters.formatters": [
+    {
+      "command": "treefmt -q --stdin ${file}",
+      "languages": [
+        "nix",
+        "haskell",
+        "cabal",
+        "yaml",
+        "toml"
+      ]
+    }
+  ],
+  "[nix]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[haskell]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[cabal]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+}

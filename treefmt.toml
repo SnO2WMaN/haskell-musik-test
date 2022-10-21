@@ -1,0 +1,31 @@
+
+[formatter.alejandra]
+command = "alejandra"
+includes = ["*.nix"]
+
+[formatter.yamlfmt]
+command = "yamlfmt"
+includes = ["*.yml", "*.yaml"]
+
+[formatter.taplo]
+command = "taplo"
+options = ["fmt"]
+includes = ["*.toml"]
+
+[formatter.fourmolu]
+command = "fourmolu"
+options = [
+  "--ghc-opt",
+  "-XImportQualifiedPost",
+  "--ghc-opt",
+  "-XTypeApplications",
+  "--mode",
+  "inplace",
+  "--check-idempotence",
+]
+includes = ["*.hs"]
+
+[formatter.cabal-fmt]
+command = "cabal-fmt"
+options = ["--inplace"]
+includes = ["*.cabal"]
